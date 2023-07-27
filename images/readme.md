@@ -1,1 +1,1 @@
-This directory stores QR codes.
+This directory stores all the QR codes.
