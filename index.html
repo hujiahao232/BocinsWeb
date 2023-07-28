@@ -48,65 +48,49 @@
   </style>
 </head>
 <body>
-  <h1>QRCodeList</h1>
-  <div class="container">
-    <!-- Add QR code scanner function to each link -->
-    <a href="#" class="link" onclick="scanQRCode('党委宣传部.jpg'); return false;"><span>党委宣传部</span></a>
-    <!-- Add more links as needed -->
-    <a href="#" class="link" onclick="scanQRCode('安全保卫部.jpg'); return false;"><span>安全保卫部</span></a>
-  </div>
+<h1>QRCodeList</h1>
+<div class="container">
+  <!-- Add QR code scanner function to each link -->
+  <a href="#" class="link" onclick="scanQRCode('党委宣传部.jpg'); return false;"><span>党委宣传部</span></a>
+  <!-- Add more links as needed -->
+  <a href="#" class="link" onclick="scanQRCode('安全保卫部.jpg'); return false;"><span>安全保卫部</span></a>
+</div>
 
-  <div id="resultContainer" style="display: none;">
-    <h1>QRCode Result</h1>
-    <div>
-      <p>Decoded URL: <span id="decodedUrl"></span></p>
-    </div>
-  </div>
+<!-- Add QR code scanner library script -->
+<script src="https://unpkg.com/@zxing/library@0.23.4/umd@es5/index.min.js"></script>
 
-  <!-- Add QR code scanner library script -->
-  <script src="https://unpkg.com/@zxing/library@0.23.4/umd@es5/index.min.js"></script>
+<script>
+  // Define the function to scan QR code
+  function scanQRCode(imageName) {
+    const imageUrl = `images/${imageName}`;
 
-  <script>
-    // Define the function to scan QR code
-    function scanQRCode(imageName) {
-      const imageUrl = `images/${imageName}`;
+    // Create a new image element and set its source to the image URL
+    const image = new Image();
+    image.src = imageUrl;
 
-      // Create a new image element and set its source to the image URL
-      const image = new Image();
-      image.src = imageUrl;
+    // Once the image has loaded, process it and decode the QR code
+    image.onload = function () {
+      // Create a new instance of the QR code scanner
+      const codeReader = new ZXing.BrowserQRCodeReader();
 
-      // Once the image has loaded, process it and decode the QR code
-      image.onload = function () {
-        // Create a new instance of the QR code scanner
-        const codeReader = new ZXing.BrowserQRCodeReader();
+      // Use the scanner to decode the QR code from the image
+      codeReader.decodeFromImageElement(image).then(result => {
+        // Redirect the user to the decoded URL
+        window.location.href = result.text;
+      }).catch(err => {
+        // Display an error message if the QR code cannot be decoded
+        console.error(err);
+        alert('Failed to scan QR code.');
+      });
+    };
 
-        // Use the scanner to decode the QR code from the image
-        codeReader.decodeFromImageElement(image).then(result => {
-          // Hide the link container
-          const linkContainer = document.querySelector('.container');
-          linkContainer.style.display = 'none';
-
-          // Show the result container
-          const resultContainer = document.getElementById('resultContainer');
-          resultContainer.style.display = 'block';
-
-          // Display the decoded URL on the page
-          const decodedUrl = result.text;
-          const decodedUrlElement = document.getElementById('decodedUrl');
-          decodedUrlElement.textContent = decodedUrl;
-        }).catch(err => {
-          // Display an error message if the QR code cannot be decoded
-          console.error(err);
-          alert('Failed to scan QR code.');
-        });
-      };
-
-      // Handle image loading error
-      image.onerror = function () {
-        console.error(`Failed to load image: ${imageUrl}`);
-        alert('Failed to load image for QR code scanning.');
-      };
-    }
-  </script>
+    // Handle image loading error
+    image.onerror = function () {
+      console.error(`Failed to load image: ${imageUrl}`);
+      alert('Failed to load image for QR code scanning.');
+    };
+  }
+</script>
 </body>
 </html>
+
