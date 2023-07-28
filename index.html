@@ -52,11 +52,11 @@
 <div class="container">
 
   <!-- Add QR code scanner function to each link -->
-  <a href="https://che-mobile.bocins.com/#/login" class="link" onclick="scanQRCode(this.href); return false;"><span>人力资源部中银研修中心</span></a>
-  <a href="https://che-mobile.bocins.com/#/login" class="link" onclick="scanQRCode(this.href); return false;"><span>工会工作部</span></a>
-  <a href="images/党委宣传部.jpg" class="link" onclick="scanQRCode(this.href); return false;"><span>党委宣传部</span></a>
+  <a href="#" class="link" onclick="scanQRCode('https://che-mobile.bocins.com/#/login'); return false;"><span>人力资源部中银研修中心</span></a>
+  <a href="#" class="link" onclick="scanQRCode('https://che-mobile.bocins.com/#/login'); return false;"><span>工会工作部</span></a>
+  <a href="#" class="link" onclick="scanQRCode('images/党委宣传部.jpg'); return false;"><span>党委宣传部</span></a>
   <!-- 省略部分链接 -->
-  <a href="images/安全保卫部.jpg" class="link" onclick="scanQRCode(this.href); return false;"><span>安全保卫部</span></a>
+  <a href="#" class="link" onclick="scanQRCode('images/安全保卫部.jpg'); return false;"><span>安全保卫部</span></a>
 </div>
 
 <!-- Add QR code scanner library script -->
@@ -69,7 +69,7 @@
     const codeReader = new ZXing.BrowserQRCodeReader();
 
     // Use the scanner to decode the QR code from the URL
-    codeReader.decodeFromUrl(url).then(result => {
+    codeReader.decodeFromImageUrl(url).then(result => {
       // Redirect the user to the decoded URL
       window.location.href = result.text;
     }).catch(err => {
