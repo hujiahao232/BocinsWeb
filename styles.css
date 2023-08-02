@@ -56,7 +56,7 @@ li:hover {
     flex-direction: column;
     align-items: center;
     position: sticky;
-    top: 30%; /* 调整索引条与页面顶部的距离 */
+    top: 25%; /* 调整索引条与页面顶部的距离 */
     right: 0; /* 调整索引条与页面右边的距离 */
     width: 20px;
     height: calc(100% - 160px); /* 调整索引条高度以适应布局 */
