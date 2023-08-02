@@ -7,6 +7,7 @@
 * @Create 2023/8/2
 * @Version 4.0
 -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,11 +19,19 @@
 <body>
 <div class="container">
   <h1></h1>
-  <input type="text" id="searchInput" placeholder="搜索部门...">
-  <ul id="contactList">
-    <!-- 这里的内容将由JavaScript动态生成 -->
-  </ul>
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="搜索部门...">
+  </div>
+  <div class="contacts-container">
+    <ul id="contactList">
+      <!-- 这里的内容将由JavaScript动态生成 -->
+    </ul>
+    <div class="index-bar" id="indexBar">
+      <!-- 这里的内容将由JavaScript动态生成 -->
+    </div>
+  </div>
 </div>
 <script src="script.js"></script>
 </body>
 </html>
+
