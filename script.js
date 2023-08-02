@@ -1,4 +1,3 @@
-// 假设这是从后端获取的联系人列表数据
 const contacts = [
     { name: "人力资源部中银研修中心", pinyin: "renliziyuanbuzhongyinyanxiuzhongxin", link: "https://che-mobile.bocins.com/#/login?userId=U22091409054588&qrCode=3120230727000042&typeFlag=0&cusUserCode=U22091409054588" },
     { name: "工会工作部", pinyin: "gonghuigongzuobu", link: "https://che-mobile.bocins.com/#/login?userId=U22091409054588&qrCode=3120230727000041&typeFlag=0&cusUserCode=U22091409054588" },
@@ -68,7 +67,78 @@ document.getElementById("searchInput").addEventListener("input", function() {
     renderContacts(this.value);
 });
 
+
+// 假设这是从后端获取的联系人列表数据（与之前保持一致）
+// const contacts = [ ... ];
+
+// 生成字母索引条的HTML内容
+function generateIndexBar() {
+    const letters = new Set(contacts.map(contact => contact.pinyin[0].toUpperCase())); // 获取联系人中出现的首字母并去重
+    const sortedLetters = Array.from(letters).sort(); // 对字母进行排序
+
+    return sortedLetters.map(letter => `<div class="index-item" data-letter="${letter}">${letter}</div>`).join("");
+}
+
+// 更新联系人列表显示
+function renderContacts(searchTerm) {
+    const filteredContacts = contacts.filter(
+        contact =>
+            contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            contact.pinyin.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    let currentLetter = "";
+    let html = "";
+
+    for (const contact of filteredContacts) {
+        const firstLetter = contact.pinyin[0].toUpperCase();
+        if (firstLetter !== currentLetter) {
+            // 添加带背景颜色的字母标签
+            html += `<li class="letter-label">${firstLetter}</li>`;
+            currentLetter = firstLetter;
+        }
+
+        // 添加联系人
+        html += `<li onclick="window.location.href='${contact.link}'">${contact.name}</li>`;
+    }
+
+    document.getElementById("contactList").innerHTML = html;
+}
+
+// 监听搜索框输入事件
+document.getElementById("searchInput").addEventListener("input", function() {
+    renderContacts(this.value);
+});
+
 // 初始页面加载时渲染全部联系人
 renderContacts("");
+
+// 生成字母索引条并添加事件监听
+const indexBar = document.getElementById("indexBar");
+indexBar.innerHTML = generateIndexBar();
+indexBar.addEventListener("click", handleIndexItemClick);
+
+// 处理字母索引点击事件
+function handleIndexItemClick(event) {
+    if (event.target.classList.contains("index-item")) {
+        const targetLetter = event.target.getAttribute("data-letter");
+        const targetContact = contacts.find(contact => contact.pinyin[0].toUpperCase() === targetLetter);
+        if (targetContact) {
+            // 滚动到对应的联系人位置
+            const targetElement = document.querySelector(`[onclick="window.location.href='${targetContact.link}'"]`);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: "smooth" });
+
+                // 显示闪烁效果
+                targetElement.style.backgroundColor = "#BEBEBE"; // 设置为灰色背景
+                setTimeout(() => {
+                    targetElement.style.backgroundColor = ""; // 恢复原始背景颜色
+                }, 500);
+            }
+        }
+    }
+}
+
+
 
 
