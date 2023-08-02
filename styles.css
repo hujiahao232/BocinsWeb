@@ -7,7 +7,7 @@ body {
 .container {
     max-width: 600px;
     margin: 0px auto;
-    padding: 5px;
+    padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -24,7 +24,7 @@ ul {
     list-style: none;
     padding: 0;
     width:95%;
-    margin-right: 10px; /* 添加间距，调整与右侧索引条的距离 */
+    margin-right: 8px; /* 添加间距，调整与右侧索引条的距离 */
 }
 
 li {
@@ -44,7 +44,6 @@ li:hover {
     text-decoration: none; /* 去掉链接下划线 */
 }
 
-/* 已有样式内容略 */
 
 .contacts-container {
     display: flex;
@@ -58,7 +57,7 @@ li:hover {
     align-items: center;
     position: sticky;
     top: 20%; /* 调整索引条与页面顶部的距离 */
-    right: 0px; /* 调整索引条与页面右边的距离 */
+    right: 0; /* 调整索引条与页面右边的距离 */
     width: 20px;
     height: calc(100% - 160px); /* 调整索引条高度以适应布局 */
     overflow-y: auto;
@@ -82,6 +81,7 @@ li:hover {
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #F0F0F0;
+    height: 27px;
 }
 .contacts-container {
     position: relative;
