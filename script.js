@@ -1,5 +1,5 @@
 const contacts = [
-    { name: "人力资源部中银修中心", pinyin: "renliziyuanbuzhongyinyanxiuzhongxin", link: "https://che-mobile.bocins.com/#/login?userId=U21011317256181&qrCode=3120230914000025&typeFlag=0&cusUserCode=U21011317256181" },
+    { name: "人力资源部中银研修中心", pinyin: "renliziyuanbuzhongyinyanxiuzhongxin", link: "https://che-mobile.bocins.com/#/login?userId=U21011317256181&qrCode=3120230914000025&typeFlag=0&cusUserCode=U21011317256181" },
     { name: "工会工作部", pinyin: "gonghuigongzuobu", link: "https://che-mobile.bocins.com/#/login?userId=U21011317256181&qrCode=3120230914000012&typeFlag=0&cusUserCode=U21011317256181" },
     { name: "党委宣传部", pinyin: "dangweixuanchuanbu", link: "https://che-mobile.bocins.com/#/login?userId=U21011317256181&qrCode=3120230914000007&typeFlag=0&cusUserCode=U21011317256181" },
     { name: "行长室", pinyin: "hangzhangshi", link: "https://che-mobile.bocins.com/#/login?userId=U21011317256181&qrCode=3120230914000014&typeFlag=0&cusUserCode=U21011317256181" },
